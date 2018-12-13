@@ -9,6 +9,11 @@
 	<ul>
 	@foreach ($projects as $project)
 		<li>id:[{{ $project->id}}] - title:[{{ $project->title }}]</li>
+		<li>
+			<a href="/projects/{{ $project->id }}">
+				{{ $project->title }}
+			</a>
+		</li>
 	@endforeach
 	</ul>
 </body>

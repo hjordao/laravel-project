@@ -29,32 +29,23 @@ class ProjectsController extends Controller
     }
 
     // GET /projects/1 (show)
-    public function show() {
-
+    public function show(Project $project) {
+        return view('projects.show', compact('project'));
     }
 
     // POST /projects (store)
-    public function store() {
-    	$project = new Project();
-    	$project->title = request('title');
-    	$project->description = request('description');
-    	$project->save();
+    public function store() { 
+        Project::create(request(['title', 'description']));
     	return redirect('/projects');
     }
 
-    public function edit($id) {
-        $project = Project::findOrFail($id);
+    public function edit(Project $project) {
         return view('projects.edit', compact('project'));
     }
 
-    public function update($id) {
-        //dd(request()->all());
-        $project = Project::findOrFail($id);
-        $project->title = request('title');
-        $project->description = request('description');
-        $project->save();
+    public function update(Project $project) {
+        $project->update(request(['title', 'description']));
         return redirect('/projects');
-        //return view('projects.update');
     }
 
     public function destroy($id) {
