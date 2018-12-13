@@ -57,7 +57,8 @@ class ProjectsController extends Controller
         //return view('projects.update');
     }
 
-    public function destroy() {
-        return view('projects.destroy');
+    public function destroy($id) {
+        Project::find($id)->delete();
+        return redirect('/projects');
     }
 }

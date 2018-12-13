@@ -8,7 +8,7 @@
 
 	<ul>
 	@foreach ($projects as $project)
-		<li>{{ $project->title }}</li>
+		<li>id:[{{ $project->id}}] - title:[{{ $project->title }}]</li>
 	@endforeach
 	</ul>
 </body>
