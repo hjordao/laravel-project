@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+	GET /projects (index)
+	POST /projects (store)
+	PATCH /projects/id (update)
+	DELETE /projects/1 (destroy)
+*/
+
 Route::get('/projects', 'ProjectsController@index');
 Route::post('/projects', 'ProjectsController@store');
 Route::get('/projects/create', 'ProjectsController@create');
