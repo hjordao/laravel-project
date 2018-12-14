@@ -19,6 +19,12 @@ class Project extends Model
 		return $this->hasMany(Task::class);
 	}
 
-}
+	public function addTask($description)
+	{
+		return Task::create([
+			'project_id' => $this->id,
+			'description' => $description
+		]);
+	}
 
 
