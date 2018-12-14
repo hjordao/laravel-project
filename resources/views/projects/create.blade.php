@@ -1,23 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Create View Page</title>
-</head>
-<body>
-	<h1>Create Projects View Page:</h1>
-	<form method="post" action="/projects">
-		{{ csrf_field() }}
-		<div>
-			<input type="text" name="title" placeholder="Project Title">
-		</div>
+@extends('layout')
 
-		<div>
-			<textarea name="description" placeholder="Project Description"></textarea>
+@section('content')
+	<h1 class="title">Create Projects View Page:</h1>
+	<form method="POST" action="/projects">
+		@csrf
+		<div class="field">
+			<label class="label" for="title">Title: </label>
+			<div class="control">
+				<input type="text" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" name="title" value="{{ old('title') }}">
+			</div>
 		</div>
-
-		<div>
-			<button type="submit">Create Project</button>
+		<div class="field">
+			<label class="label" for="description">Description: </label>
+			<div class="control">
+				<textarea name="description" class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}" value="{{ old('description') }}"></textarea>
+			</div>
 		</div>
+		<div class="field">
+			<div class="control">
+				<button type="submit" class="button">Create Project</button>
+			</div>
+		</div>	
+		@if ($errors->any())
+			<div class="notification is-danger">
+				<ul>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
 	</form>
-</body>
-</html>
+@endsection
